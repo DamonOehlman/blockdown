@@ -80,7 +80,7 @@ module.exports = function(input, opts, callback) {
     });
 
     cornet.on('dom', function(dom) {
-      console.log(dom.map(DomUtils.getOuterHTML).join(''));
+      callback(null, dom.map(DomUtils.getOuterHTML).join(''));
     });
   });
 

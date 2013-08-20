@@ -1,7 +1,7 @@
 {
   "name": "blockdown",
   "version": "0.1.0",
-  "description": "Markdown content injector for pure HTML pages",
+  "description": "Markdown content injector for pure HTML templates",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
