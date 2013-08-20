@@ -1,0 +1,34 @@
+{
+  "name": "blockdown",
+  "version": "0.0.0",
+  "description": "Markdown content injector for pure HTML pages",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gendocs": "gendocs > README.md"
+  },
+  "bin": {
+    "blockdown": "./bin/blockdown"
+  },
+  "preferGlobal": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DamonOehlman/blockdown.git"
+  },
+  "keywords": [
+    "content",
+    "markdown",
+    "template"
+  ],
+  "author": "Damon Oehlman <damon.oehlman@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DamonOehlman/blockdown/issues"
+  },
+  "dependencies": {
+    "htmlparser2": "~3.2.3",
+    "cornet": "~0.1.4",
+    "domutils": "~1.1.2",
+    "markdown": "~0.5.0"
+  }
+}

@@ -1,0 +1,19 @@
+#!/usr/bin/env node
+var blockdown = require('../');
+var source = '';
+
+process.stdin.resume();
+process.stdin.on('data', function(d) {
+  source += d.toString();
+});
+
+process.stdin.on('end', function() {
+  blockdown(source, { template: process.argv[2] }, function(err, output) {
+    if (err) {
+      process.stderr.write('Error while running blockdown: ' + err);
+      process.exit(1);
+    }
+
+    console.log(output);
+  });
+});
