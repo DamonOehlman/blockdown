@@ -3,7 +3,7 @@
 
 var fs = require('fs');
 var path = require('path');
-var markdown = require('markdown').markdown;
+var brucedown = require('brucedown');
 var htmlparser = require('htmlparser2');
 var Cornet = require('cornet');
 var DomUtils = require('domutils');
@@ -86,6 +86,13 @@ module.exports = function(input, opts, callback) {
 
   // write the markdown content to the htmlparser
   parser = new htmlparser.Parser(contentHandler);
-  parser.write(markdown.toHTML(input));
-  parser.done();
+
+  brucedown(input, function(err, html) {
+    if (err) {
+      return callback(err);
+    }
+
+    parser.write(html);
+    parser.done();
+  });
 };
