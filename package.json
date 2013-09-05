@@ -29,6 +29,7 @@
     "htmlparser2": "~3.2.3",
     "cornet": "~0.1.4",
     "domutils": "~1.1.2",
-    "brucedown": "0.0.1"
+    "brucedown": "0.0.1",
+    "formatter": "~0.4.0"
   }
 }

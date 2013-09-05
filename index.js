@@ -4,6 +4,7 @@
 var fs = require('fs');
 var path = require('path');
 var brucedown = require('brucedown');
+var formatter = require('formatter');
 var htmlparser = require('htmlparser2');
 var Cornet = require('cornet');
 var DomUtils = require('domutils');
@@ -50,6 +51,9 @@ module.exports = function(input, opts, callback) {
   var contentHandler;
   var template = (opts || {}).template;
   var parser;
+  var templateData = {
+    tick: Date.now()
+  };
 
   // if the template is not defined, then use a default template
   if (! template) {
@@ -70,22 +74,42 @@ module.exports = function(input, opts, callback) {
       return callback(err);
     }
 
-    // now parse the template
-    parser = new htmlparser.WritableStream(cornet);
-    fs.createReadStream(template).pipe(parser);
+    // load the template file
+    fs.readFile(template, 'utf8', function(err, html) {
+      var templateParser;
 
-    cornet.select('*[role="content"]', function(elem) {
-      // remove the children
-      elem.children = [].concat(mdDom);
-    });
+      if (err) {
+        return callback(err);
+      }
 
-    cornet.on('dom', function(dom) {
-      callback(null, dom.map(DomUtils.getOuterHTML).join(''));
+      // create the template parser
+      templateParser = new htmlparser.Parser(cornet);
+
+      cornet.select('*[role="content"]', function(elem) {
+        // remove the children
+        elem.children = [].concat(mdDom);
+      });
+
+      cornet.once('dom', function(dom) {
+        callback(null, dom.map(DomUtils.getOuterHTML).join(''));
+      });
+
+      // format the template content
+      html = formatter(html, { ignoreNumeric: true})(templateData);
+
+      // write the html into the template parser
+      templateParser.write(html);
+      templateParser.end();
     });
   });
 
   // write the markdown content to the htmlparser
   parser = new htmlparser.Parser(contentHandler);
+
+  // preprocess the input replacing {{ }} directives
+  input = formatter(input, { ignoreNumeric: true })({
+    tick: Date.now()
+  });
 
   brucedown(input, function(err, html) {
     if (err) {
