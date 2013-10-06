@@ -60,12 +60,19 @@ module.exports = function(input, opts, callback) {
     template = path.join(defaultTemplates, 'simple.html');
   }
   else {
-    template = path.resolve(template);
+    if (path.extname(template) === '') {
+      template += '.html';
+    }
+
+    // look in the local directory
+    template = fs.existsSync(path.resolve(template)) ?
+      path.resolve(template) :
+      path.resolve(defaultTemplates, template);
   }
 
   // if the template does not exist, then return an error
   if (! fs.existsSync(template)) {
-    return callback(new Error('could not locate template:' + template));
+    return callback(new Error('could not locate template: ' + template));
   }
 
   // parse the markdown html content
