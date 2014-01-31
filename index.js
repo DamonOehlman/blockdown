@@ -4,6 +4,7 @@
 var fs = require('fs');
 var path = require('path');
 var brucedown = require('brucedown');
+var extend = require('cog/extend');
 var formatter = require('formatter');
 var htmlparser = require('htmlparser2');
 var Cornet = require('cornet');
@@ -51,9 +52,9 @@ module.exports = function(input, opts, callback) {
   var contentHandler;
   var template = (opts || {}).template;
   var parser;
-  var templateData = {
+  var templateData = extend({
     tick: Date.now()
-  };
+  }, opts);
 
   // if the template is not defined, then use a default template
   if (! template) {
