@@ -1,14 +1,25 @@
 #!/usr/bin/env node
 var blockdown = require('../');
 var source = '';
+var parsed = require('nopt')({}, {}, process.argv, 2);
+var not = require('whisk/not');
+var opts = {};
 
 process.stdin.resume();
 process.stdin.on('data', function(d) {
   source += d.toString();
 });
 
+// extract the data flags from the nopt parsed arguments
+Object.keys(parsed).filter(not('argv')).forEach(function(key) {
+  opts[key] = parsed[key];
+});
+
+// initialise the template
+opts.template = opts.template || parsed.argv.remain[0];
+
 process.stdin.on('end', function() {
-  blockdown(source, { template: process.argv[2] }, function(err, output) {
+  blockdown(source, opts, function(err, output) {
     if (err) {
       process.stderr.write('Error while running blockdown: ' + err);
       process.exit(1);
