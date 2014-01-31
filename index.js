@@ -39,6 +39,14 @@ var defaultTemplates = path.resolve(__dirname, 'templates');
   blockdown templates/page.html < README.md > pages/readme.html
   ```
 
+  If your template contains simple template section that are recognised by
+  [formatter](https://github.com/DamonOehlman/formatter) (e.g. `{{ a }}`)
+  you can specify values for these values using command-line arguments:
+
+  ```
+  blockdown templates/page.html --a=b < README.md > pages/readme.html
+  ```
+
   ## Reference
 
   You can also use `blockdown` as a node module if so desired also:

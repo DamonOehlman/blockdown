@@ -29,6 +29,14 @@ So a full example would look something like:
 blockdown templates/page.html < README.md > pages/readme.html
 ```
 
+If your template contains simple template section that are recognised by
+[formatter](https://github.com/DamonOehlman/formatter) (e.g. `{{ a }}`)
+you can specify values for these values using command-line arguments:
+
+```
+blockdown templates/page.html --a=b < README.md > pages/readme.html
+```
+
 ## Reference
 
 You can also use `blockdown` as a node module if so desired also:
@@ -41,7 +49,7 @@ To be completed.
 
 ### MIT
 
-Copyright (c) 2013 Damon Oehlman <damon.oehlman@gmail.com>
+Copyright (c) 2014 Damon Oehlman <damon.oehlman@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
