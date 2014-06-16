@@ -34,7 +34,7 @@
     "formatter": "~0.4",
     "htmlparser2": "^3",
     "marked": "~0.3",
-    "nopt": "^2",
+    "nopt": "^3",
     "whisk": "~0.6"
   }
 }
