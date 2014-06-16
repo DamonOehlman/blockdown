@@ -26,14 +26,15 @@
     "url": "https://bitbucket.org/DamonOehlman/blockdown/issues"
   },
   "dependencies": {
-    "htmlparser2": "^3",
+    "brucedown": "~0.1",
+    "cog": "~0.5",
+    "concat-stream": "^1.4.5",
     "cornet": "~0.1",
     "domutils": "^1",
-    "brucedown": "~0.1",
     "formatter": "~0.4",
-    "cog": "~0.5",
+    "htmlparser2": "^3",
+    "marked": "~0.3",
     "nopt": "^2",
-    "whisk": "~0.6",
-    "concat-stream": "^1.4.5"
+    "whisk": "~0.6"
   }
 }
