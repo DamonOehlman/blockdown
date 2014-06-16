@@ -8,7 +8,7 @@ into the HTML element with a `role="content"` attribute.
 
 [![NPM](https://nodei.co/npm/blockdown.png)](https://nodei.co/npm/blockdown/)
 
-[![stable](http://hughsk.github.io/stability-badges/dist/stable.svg)](http://github.com/hughsk/stability-badges)
+[![stable](https://img.shields.io/badge/stability-stable-green.svg)](https://github.com/badges/stability-badges) [![Dependency Status](https://david-dm.org/DamonOehlman/blockdown.svg)](https://david-dm.org/DamonOehlman/blockdown) 
 
 ## Usage
 
