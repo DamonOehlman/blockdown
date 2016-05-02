@@ -1,6 +1,6 @@
 {
   "name": "blockdown",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "description": "Markdown content injector for pure HTML templates",
   "main": "index.js",
   "scripts": {
